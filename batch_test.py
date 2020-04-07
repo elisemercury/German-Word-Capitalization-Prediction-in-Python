@@ -2,7 +2,7 @@ import pandas as pd
 import word_predictor
 import pickle
 
-def batch_test(test_list, model_filename):
+def batch_test(test_list, model_filename, export_df=""):
     print(" Batch Testing... ".center(60, '#'), "\n")
     columns = ["art_nr", "total_words", "test_time", "TP", "TN", "FP", "FN", "UP", "UN", "TPR", "TNR", "PPV", "F1", "MCC", "ACC"]
     df_evaluation = pd.DataFrame([], columns=columns)
@@ -26,6 +26,7 @@ def batch_test(test_list, model_filename):
                                       word_predictor.predict.MCC, 
                                       word_predictor.predict.ACC]
             l +=1
-    df_evaluation.to_pickle("df_evaluation_" + str(model_filename)) 
+    if export_df != "no":
+        df_evaluation.to_pickle("df_evaluation_" + str(model_filename)) 
     return df_evaluation.head()
             

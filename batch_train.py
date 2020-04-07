@@ -4,6 +4,17 @@ import re
 from datetime import datetime
 from gensim.models import Word2Vec
 from nltk.tokenize import *
+from nltk.corpus import stopwords 
+import numpy as np
+
+# german stopwords to exclude from lowering
+de_stop_words = stopwords.words('german')
+de_stop_words = np.array(list(de_stop_words))
+exclude = np.array(["allen", "andere", "anderen", "hat", "man", "muss", "waren", "weg", "will"])
+exclude = (np.isin(de_stop_words, exclude))
+de_stop_words = de_stop_words[exclude==False]
+de_stop_words_cap = [i.capitalize() for i in de_stop_words]
+de_stop_words_dict = {de_stop_words_cap[i]: de_stop_words[i] for i in range(len(de_stop_words_cap))}
 
 def batch_train(output_file, max_batch, max_train): 
     """output_file....string, empty .bin file for saving the trained model
@@ -25,12 +36,13 @@ def batch_train(output_file, max_batch, max_train):
     ticker = 0
 
     while ticker < max_train:
-
-        while l < max_batch:
+        
+        while l < max_batch and ticker < max_train:
             for filename in os.listdir(os.getcwd() + "\\extracted\\" + dir_list[file]):
                 with open(os.path.join(os.getcwd() + "\\extracted\\" + dir_list[file] + "\\" + filename), 'rt', encoding="utf-8") as f:
                     train.append(f.read())
             file += 1
+            ticker += 1
             l += 1
         
         clean_train = [x.encode('utf-8').decode('utf-8') for x in train]
@@ -66,24 +78,32 @@ def batch_train(output_file, max_batch, max_train):
         clean_train = [word_tokenize(x) for x in clean_train]  
         print("8 at", datetime.now())
 
+        # convert stopwords to lower case
+        replace_matched_items(clean_train, de_stop_words_dict)
+        print("9 at", datetime.now())
+
         #training
 
-        if ticker < max_batch:
+        if ticker == max_batch:
             model = Word2Vec(clean_train)
             model.save(output_file)
             print("Model created at", datetime.now())
             del model
             train = []
-            ticker += max_batch
             l = 0
         else:
-            model = gensim.models.Word2Vec.load(output_file)
+            model = Word2Vec.load(output_file)
             model.train(clean_train, total_examples=(len(clean_train)), epochs=model.epochs)
             model.save(output_file)
             del model
             print("Model updated at ticker", ticker, datetime.now()) 
             train = []
-            ticker += max_batch
             l = 0
 
     print("Folders used for training:" , dir_list[0:ticker])
+
+# function for replacing elements in a list matching the given dictionary keys
+def replace_matched_items(word_list, dictionary):
+    for lst in word_list:
+        for ind, item in enumerate(lst):
+            lst[ind] = dictionary.get(item, item)

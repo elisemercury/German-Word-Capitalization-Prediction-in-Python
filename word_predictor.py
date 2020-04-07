@@ -38,7 +38,7 @@ class predict():
         
         print(" Prediction ".center(40, '#') ,
                 "\n""\n" 
-                "Input Text:     " , str_input[0:90] + "...")
+                "Input Text:     " , str(str_input[0:90]) + "...")
         print("\n predicting...", end= "   ")
         
         model = gensim.models.Word2Vec.load(model_filename)
