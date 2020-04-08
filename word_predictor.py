@@ -58,28 +58,52 @@ class predict():
                     if progress=="words":
                         print(i, end=" ")
                     elif progress=="bar":
-                        progbar(len(predict_output), len(split_orig), 20)
+                        predict.progbar(len(predict_output), len(split_orig), 20)
                     l += 1
                 elif str.isdigit(i) == True:
                     predict_output = np.append(predict_output, i)
                     if progress=="words":
                         print(i, end=" ")
                     elif progress=="bar":
-                        progbar(len(predict_output), len(split_orig), 20)
+                         predict.progbar(len(predict_output), len(split_orig), 20)
                     l += 1             
                 elif l == 0:
-                    predict_output = np.append(predict_output, i.capitalize())
-                    if progress=="words":
-                        print(i.capitalize(), end= " ")
-                    elif progress=="bar":
-                        progbar(len(predict_output), len(split_orig), 20)
-                    l += 1
+                    if words.get(split_orig[l].lower()):
+                        if words.get(split_orig[l].capitalize()):
+                            predict_output = np.append(predict_output, i.capitalize())
+                            if progress=="words":
+                                print(i.upper(), end= " ")
+                            elif progress=="bar":
+                                predict.progbar(len(predict_output), len(split_orig), 20)
+                            l += 1 
+                        else: 
+                            predict_output = np.append(predict_output, i.capitalize())
+                            if progress=="words":
+                                print(i.upper(), end= " ")
+                            elif progress=="bar":
+                                predict.progbar(len(predict_output), len(split_orig), 20)
+                            l += 1 
+                    elif words.get(split_orig[l].capitalize()):
+                            predict_output = np.append(predict_output, i.capitalize())
+                            if progress=="words":
+                                print(i.upper(), end= " ")
+                            elif progress=="bar":
+                                predict.progbar(len(predict_output), len(split_orig), 20)
+                            l += 1
+                    else:
+                        predict_output = np.append(predict_output, i.upper())
+                        unknown = np.append(unknown, i)
+                        if progress=="words":
+                            print(i.upper(), end= " ")
+                        elif progress=="bar":
+                            predict.progbar(len(predict_output), len(split_orig), 20)
+                        l += 1                         
                 elif predict_output[-1] == ".":
                     predict_output = np.append(predict_output, i.capitalize())
                     if progress=="words":
                         print(i.capitalize(), end= " ")
                     elif progress=="bar":
-                        progbar(len(predict_output), len(split_orig), 20)
+                        predict.progbar(len(predict_output), len(split_orig), 20)
                     l += 1
                 else:
                     if words.get(split_orig[l].lower()):
@@ -106,7 +130,7 @@ class predict():
                                         if progress=="words":
                                             print(i.lower(), "(predicted)", end= " ")
                                         elif progress=="bar":
-                                            progbar(len(predict_output), len(split_orig), 20)
+                                            predict.progbar(len(predict_output), len(split_orig), 20)
                                         l += 1 
                                     elif val_low <= val_cap:
                                         predict_output = np.append(predict_output, i.capitalize())
@@ -114,7 +138,7 @@ class predict():
                                         if progress=="words":
                                             print(i.capitalize(), "(predicted)", end= " ")
                                         elif progress=="bar":
-                                            progbar(len(predict_output), len(split_orig), 20)
+                                            predict.progbar(len(predict_output), len(split_orig), 20)
                                         l += 1  
                                     else:                                                                         
                                         predict_output = np.append(predict_output, i.upper())
@@ -122,7 +146,7 @@ class predict():
                                         if progress=="words":
                                             print(i.upper(), end= " ")
                                         elif progress=="bar":
-                                            progbar(len(predict_output), len(split_orig), 20)
+                                            predict.progbar(len(predict_output), len(split_orig), 20)
                                         l += 1                                    
 
                                 elif len(split_in_words) >= (l+3):
@@ -142,7 +166,7 @@ class predict():
                                         if progress=="words":
                                             print(i.lower(), "(predicted)", end= " ")      
                                         elif progress=="bar":
-                                            progbar(len(predict_output), len(split_orig), 20)
+                                            predict.progbar(len(predict_output), len(split_orig), 20)
                                         l += 1 
                                     elif val_low <= val_cap:
                                         predict_output = np.append(predict_output, i.capitalize())
@@ -150,7 +174,7 @@ class predict():
                                         if progress=="words":
                                             print(i.capitalize(), "(predicted)", end= " ")
                                         elif progress=="bar":
-                                            progbar(len(predict_output), len(split_orig), 20)
+                                            predict.progbar(len(predict_output), len(split_orig), 20)
                                         l += 1  
                                     else:                                                                         
                                         predict_output = np.append(predict_output, i.upper())
@@ -158,7 +182,7 @@ class predict():
                                         if progress=="words":
                                             print(i.upper(), end= " ")
                                         elif progress=="bar":
-                                            progbar(len(predict_output), len(split_orig), 20)
+                                            predict.progbar(len(predict_output), len(split_orig), 20)
                                         l += 1                                              
 
                                 elif len(split_in_words) > (l+1): # predict with l+1
@@ -177,7 +201,7 @@ class predict():
                                         if progress=="words":
                                             print(i.lower(), "(predicted)", end= " ")
                                         elif progress=="bar":
-                                            progbar(len(predict_output), len(split_orig), 20)
+                                            predict.progbar(len(predict_output), len(split_orig), 20)
                                         l += 1 
                                     elif val_low <= val_cap:
                                         predict_output = np.append(predict_output, i.capitalize())
@@ -185,7 +209,7 @@ class predict():
                                         if progress=="words":
                                             print(i.capitalize(), "(predicted)", end= " ")
                                         elif progress=="bar":
-                                            progbar(len(predict_output), len(split_orig), 20)
+                                            predict.progbar(len(predict_output), len(split_orig), 20)
                                         l += 1  
                                     else:                                                                         
                                         predict_output = np.append(predict_output, i.upper())
@@ -193,7 +217,7 @@ class predict():
                                         if progress=="words":
                                             print(i.upper(), end= " ")
                                         elif progress=="bar":
-                                            progbar(len(predict_output), len(split_orig), 20)
+                                            predict.progbar(len(predict_output), len(split_orig), 20)
                                         l += 1       
 
                                 else:
@@ -211,7 +235,7 @@ class predict():
                                             if progress=="words":
                                                 print(i.lower(), "(predicted)", end= " ")
                                             elif progress=="bar":
-                                                progbar(len(predict_output), len(split_orig), 20)
+                                                predict.progbar(len(predict_output), len(split_orig), 20)
                                             l += 1 
                                         elif val_low <= val_cap:
                                             predict_output = np.append(predict_output, i.capitalize())
@@ -219,7 +243,7 @@ class predict():
                                             if progress=="words":
                                                 print(i.capitalize(), "(predicted)", end= " ")
                                             elif progress=="bar":
-                                                progbar(len(predict_output), len(split_orig), 20)
+                                                predict.progbar(len(predict_output), len(split_orig), 20)
                                             l += 1  
                                         else:                                                                         
                                             predict_output = np.append(predict_output, i.upper())
@@ -227,7 +251,7 @@ class predict():
                                             if progress=="words":
                                                 print(i.upper(), end= " ")
                                             elif progress=="bar":
-                                                progbar(len(predict_output), len(split_orig), 20)
+                                                predict.progbar(len(predict_output), len(split_orig), 20)
                                             l += 1
 
                                     elif len(found) >= 5:  
@@ -245,7 +269,7 @@ class predict():
                                             if progress=="words":
                                                 print(i.lower(), "(predicted)", end= " ")
                                             elif progress=="bar":
-                                                progbar(len(predict_output), len(split_orig), 20)
+                                                predict.progbar(len(predict_output), len(split_orig), 20)
                                             l += 1 
                                         elif val_low <= val_cap:
                                             predict_output = np.append(predict_output, i.capitalize())
@@ -253,7 +277,7 @@ class predict():
                                             if progress=="words":
                                                 print(i.capitalize(), "(predicted)", end= " ")
                                             elif progress=="bar":
-                                                progbar(len(predict_output), len(split_orig), 20)
+                                                predict.progbar(len(predict_output), len(split_orig), 20)
                                             l += 1  
                                         else:                                                                         
                                             predict_output = np.append(predict_output, i.upper())
@@ -261,7 +285,7 @@ class predict():
                                             if progress=="words":
                                                 print(i.upper(), end= " ")
                                             elif progress=="bar":
-                                                progbar(len(predict_output), len(split_orig), 20)
+                                                predict.progbar(len(predict_output), len(split_orig), 20)
                                             l += 1    
 
                                     else:
@@ -278,7 +302,7 @@ class predict():
                                             if progress=="words":
                                                 print(i.lower(), "(predicted)", end= " ")
                                             elif progress=="bar":
-                                                progbar(len(predict_output), len(split_orig), 20)
+                                                predict.progbar(len(predict_output), len(split_orig), 20)
                                             l += 1 
                                         elif val_low <= val_cap:
                                             predict_output = np.append(predict_output, i.capitalize())
@@ -286,7 +310,7 @@ class predict():
                                             if progress=="words":
                                                 print(i.capitalize(), "(predicted)", end= " ")
                                             elif progress=="bar":
-                                                progbar(len(predict_output), len(split_orig), 20)
+                                                predict.progbar(len(predict_output), len(split_orig), 20)
                                             l += 1  
                                         else:                                                                         
                                             predict_output = np.append(predict_output,i.upper())
@@ -294,7 +318,7 @@ class predict():
                                             if progress=="words":
                                                 print(i.upper(), end= " ")
                                             elif progress=="bar":
-                                                progbar(len(predict_output), len(split_orig), 20)
+                                                predict.progbar(len(predict_output), len(split_orig), 20)
                                             l += 1    
 
                             else:
@@ -317,7 +341,7 @@ class predict():
                                         if progress=="words":
                                             print(i.lower(), "(predicted)", end= " ")
                                         elif progress=="bar":
-                                            progbar(len(predict_output), len(split_orig), 20)
+                                            predict.progbar(len(predict_output), len(split_orig), 20)
                                         l += 1 
                                     elif val_low <= val_cap:
                                         predict_output = np.append(predict_output, i.capitalize())
@@ -325,7 +349,7 @@ class predict():
                                         if progress=="words":
                                             print(i.capitalize(), "(predicted)", end= " ")
                                         elif progress=="bar":
-                                            progbar(len(predict_output), len(split_orig), 20)
+                                            predict.progbar(len(predict_output), len(split_orig), 20)
                                         l += 1  
                                     else:                                                                         
                                         predict_output = np.append(predict_output, i.upper())
@@ -333,7 +357,7 @@ class predict():
                                         if progress=="words":
                                             print(i.upper(), end= " ")
                                         elif progress=="bar":
-                                            progbar(len(predict_output), len(split_orig), 20)
+                                            predict.progbar(len(predict_output), len(split_orig), 20)
                                         l += 1          
 
                                 elif len(split_wo_punc) >= (l+3):    
@@ -354,7 +378,7 @@ class predict():
                                         if progress=="words":
                                             print(i.lower(), "(predicted)", end= " ")
                                         elif progress=="bar":
-                                            progbar(len(predict_output), len(split_orig), 20)
+                                            predict.progbar(len(predict_output), len(split_orig), 20)
                                         l += 1 
                                     elif val_low <= val_cap:
                                         predict_output = np.append(predict_output, i.capitalize())
@@ -362,7 +386,7 @@ class predict():
                                         if progress=="words":
                                             print(i.capitalize(), "(predicted)", end= " ")
                                         elif progress=="bar":
-                                            progbar(len(predict_output), len(split_orig), 20)
+                                            predict.progbar(len(predict_output), len(split_orig), 20)
                                         l += 1  
                                     else:                                                                         
                                         predict_output = np.append(predict_output, i.upper())
@@ -370,7 +394,7 @@ class predict():
                                         if progress=="words":
                                             print(i.upper(), end= " ")
                                         elif progress=="bar":
-                                            progbar(len(predict_output), len(split_orig), 20)
+                                            predict.progbar(len(predict_output), len(split_orig), 20)
                                         l += 1                                                
 
                                 elif len(split_wo_punc) > (l+1): # predict with l+1                  
@@ -390,7 +414,7 @@ class predict():
                                         if progress=="words":
                                             print(i.lower(), "(predicted)", end= " ")
                                         elif progress=="bar":
-                                            progbar(len(predict_output), len(split_orig), 20)
+                                            predict.progbar(len(predict_output), len(split_orig), 20)
                                         l += 1 
                                     elif val_low <= val_cap:
                                         predict_output = np.append(predict_output, i.capitalize())
@@ -398,7 +422,7 @@ class predict():
                                         if progress=="words":
                                             print(i.capitalize(), "(predicted)", end= " ")
                                         elif progress=="bar":
-                                            progbar(len(predict_output), len(split_orig), 20)
+                                            predict.progbar(len(predict_output), len(split_orig), 20)
                                         l += 1  
                                     else:                                                                         
                                         predict_output = np.append(predict_output, i.upper())
@@ -406,7 +430,7 @@ class predict():
                                         if progress=="words":
                                             print(i.upper(), end= " ")
                                         elif progress=="bar":
-                                            progbar(len(predict_output), len(split_orig), 20)
+                                            predict.progbar(len(predict_output), len(split_orig), 20)
                                         l += 1                                               
                                 else:                                                                      
                                     predict_output = np.append(predict_output, i.upper())
@@ -414,7 +438,7 @@ class predict():
                                     if progress=="words":
                                         print(i.upper(), end= " ")
                                     elif progress=="bar":
-                                        progbar(len(predict_output), len(split_orig), 20)
+                                        predict.progbar(len(predict_output), len(split_orig), 20)
                                     l += 1
 
                         else:
@@ -423,7 +447,7 @@ class predict():
                             if progress=="words":
                                 print(i.lower(), end= " ")
                             elif progress=="bar":
-                                progbar(len(predict_output), len(split_orig), 20)
+                                predict.progbar(len(predict_output), len(split_orig), 20)
                             l += 1                           
 
                     elif words.get(split_orig[l].capitalize()):        
@@ -433,7 +457,7 @@ class predict():
                         if progress=="words":
                             print(i.capitalize(), end=" ")
                         elif progress=="bar":
-                            progbar(len(predict_output), len(split_orig), 20)
+                            predict.progbar(len(predict_output), len(split_orig), 20)
                         l += 1
                     else: 
                         predict_output = np.append(predict_output, i.upper())
@@ -441,7 +465,7 @@ class predict():
                         if progress=="words":
                             print(i.upper(), end= " ")
                         elif progress=="bar":
-                            progbar(len(predict_output), len(split_orig), 20)
+                            predict.progbar(len(predict_output), len(split_orig), 20)
                         l += 1
 
         
@@ -459,6 +483,12 @@ class predict():
             "\n""\n")  
         return
 
+    def progbar(curr, total, full_progbar):
+        frac = curr/total
+        filled_progbar = round(frac*full_progbar)
+        print('\r',"predicting...  ", '#'*filled_progbar + '-'*(full_progbar-filled_progbar), '[{:>7.2%}]'.format(frac), end='\r')
+        return
+
     def evaluate(str_input, predict_output, actual_output, print_eval = ""):
         #global time_elapsed, total_words, TP, TN, FP, FN, UP, UN, TPR, TNR, PPV, F1, MCC, ACC
         actual_output = np.array(re.findall(r"\w+|[^\w\s]", actual_output, re.UNICODE)) # split also by punct
@@ -471,6 +501,7 @@ class predict():
         if len(predict.unknown) > 0:
             predicted_wo_unknown = (np.isin(predict_output, np.char.upper(predict.unknown)))
             predicted_wo_unknown = predict_output[predicted_wo_unknown==False]
+            
             actual_wo_unknown = (np.isin(actual_output, predict.unknown))
             actual_wo_unknown = actual_output[actual_wo_unknown==False]
         else:
@@ -580,8 +611,3 @@ class predict():
                     "Unknown Negative:", actual_output[UN_arr][0:10] )  
             return result 
         
-        
-    def progbar(curr, total, full_progbar):
-        frac = curr/total
-        filled_progbar = round(frac*full_progbar)
-        print('\r',"predicting...  ", '#'*filled_progbar + '-'*(full_progbar-filled_progbar), '[{:>7.2%}]'.format(frac), end='\r')
