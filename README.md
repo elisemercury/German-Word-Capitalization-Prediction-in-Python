@@ -1,4 +1,4 @@
-# German-Word-Capitalization-Prediction-in-Python
+# German Word Capitalization Prediction
 Machine Learning model for predicting first letter capitalization in German text.
 
 Takes any German text as input and the file of a pre-trained Word2Vec or FastText CBOW model. The algorithm will iterate over each word in the input text and predict, whether the word should be written lowercase or capitalized.
