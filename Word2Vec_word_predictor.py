@@ -117,7 +117,7 @@ class predict():
                         if words.get(split_orig[l].capitalize()):
 
                             if len(found) > 0:
-                                # predict with last 5 and next 5 words
+                                # predict with last 2 and next 2 words
                                 context_words_list = np.array(found[-3:len(found)])
                                 context_words_list = np.append(context_words_list, split_in_words[l+1:l+3])
 
@@ -168,7 +168,7 @@ class predict():
                             else:
                                 # if no predecessing words found yet
                                 if len(split_in_words) >= (l+1):
-                                    # predict with next 5 words
+                                    # predict with next 2 words
                                     context_words_list = split_in_words[l+1:l+3] 
 
                                     # calculate probability of target word given context words
