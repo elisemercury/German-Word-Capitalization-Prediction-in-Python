@@ -22,9 +22,9 @@ This takes a single Python string of German text as input. It iterates over each
 
 For predicting on a list of multiple German texts, use this function below.
 This takes a Python list of German texts as input and predicts first letter spelling for all words in the texts. After testing is done, the test results can optionally be outputed as Pandas dataframe as a pickle file by adjusting "export_df".
-'''
+``
 Word2Vec_word_predictor.predict.batch_test(test_list, model_filename, export_df="")
-'''
+``
 
   test_list.........list, a list of German texts/sentences
   model_filename....string, takes a pretrained Gensim Word2Vec Embedding file, will be loaded with Gensim
