@@ -26,7 +26,7 @@ Word2Vec_word_predictor.predict(self, str_input, model_filename, evaluation = No
 - print_eval........optional, if print_eval="no" then will not print test evaluation results
 
 
-For predicting on a *list* of German texts, use this function below.
+For predicting on a **list** of German texts, use this function below.
 This takes a Python list of German texts as input and predicts first letter spelling for all words in the texts. After testing is done, the test results can optionally be outputed as Pandas dataframe as a pickle file by adjusting "export_df".
 
 
