@@ -5,7 +5,7 @@ Takes any German text as input and the file of a pre-trained Word2Vec or FastTex
 
 Implemented using Python 3.7.3, with the help of the Gensim machine learning library v.3.8.1 and the supporting papers by [Tomas Mikolov et al.](https://arxiv.org/abs/1301.3781) and [Piotr Bojanowski et al](https://arxiv.org/abs/1607.04606).
 
-# Usage
+## Usage
 
 For predicting whether the words in a German text should be written with lower of upper case first letter, use the function below.
 This takes a single Python string of German text as input. It iterates over each word in the text and predicts its first letter spelling by using pre-trained Word2Vec (or FastText for the second script) word embeddings (pre-trained using Gensim v.3.8.1).
@@ -26,7 +26,7 @@ Word2Vec_word_predictor.predict(self, str_input, model_filename, evaluation = No
 - print_eval........optional, if print_eval="no" then will not print test evaluation results
 
 
-For predicting on a list of multiple German texts, use this function below.
+For predicting on a *list* of German texts, use this function below.
 This takes a Python list of German texts as input and predicts first letter spelling for all words in the texts. After testing is done, the test results can optionally be outputed as Pandas dataframe as a pickle file by adjusting "export_df".
 
 
