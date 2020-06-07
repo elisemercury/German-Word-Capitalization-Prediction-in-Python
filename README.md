@@ -20,7 +20,7 @@ Word2Vec_word_predictor.predict(self, str_input, model_filename, evaluation = No
 ``
 
 - str_input.....................string, takes any German text as input
-- model_filename .....string, takes a pretrained Gensim Word2Vec Embedding file, will be loaded with Gensim 
+- model_filename......string, takes a pretrained Gensim Word2Vec Embedding file, will be loaded with Gensim 
 - evaluation..................optional, string, takes same text as in str_input but with correct capitalization
 - progress.....................optional, use progress="bar" for displaying prediction progress bar by %,
 - print_eval...................optional, if print_eval="no" then will not print test evaluation results
