@@ -117,8 +117,8 @@ class predict():
 
                             if len(found) > 0:
                                 # predict with last 5 and next 5 words
-                                context_words_list = np.array(found[-6:len(found)])
-                                context_words_list = np.append(context_words_list, split_in_words[l+1:l+6])
+                                context_words_list = np.array(found[-3:len(found)])
+                                context_words_list = np.append(context_words_list, split_in_words[l+1:l+3])
 
                                 # calculate probability of target word given context words
                                 word_vocabs = [predict.model.wv.vocab[w] for w in context_words_list if w in predict.model.wv.vocab]
@@ -168,7 +168,7 @@ class predict():
                                 # if no predecessing words found yet
                                 if len(split_in_words) >= (l+1):
                                     # predict with next 5 words
-                                    context_words_list = split_in_words[l+1:l+6] 
+                                    context_words_list = split_in_words[l+1:l+3] 
 
                                     # calculate probability of target word given context words
                                     word_vocabs = [predict.model.wv.vocab[w] for w in context_words_list if w in predict.model.wv.vocab]
