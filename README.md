@@ -14,6 +14,7 @@ This takes a single Python string of German text as input. It iterates over each
 ``
 import Word2Vec_word_predictor
 ``
+
 ``
 Word2Vec_word_predictor.predict(self, str_input, model_filename, evaluation = None, progress = "", print_eval = "")
 ``
