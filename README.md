@@ -17,7 +17,7 @@ Word2Vec_word_predictor.predict(self, str_input, model_filename, evaluation = No
 ``
 
 - str_input.........string, takes any German text as input
-- string, takes a pretrained Gensim Word2Vec Embedding file, will be loaded with Gensim 
+- model_filename ...string, takes a pretrained Gensim Word2Vec Embedding file, will be loaded with Gensim 
 - evaluation........optional, string, takes same text as in str_input but with correct capitalization
 - progress..........optional, use progress="bar" for displaying prediction progress bar by %,
 - print_eval........optional, if print_eval="no" then will not print test evaluation results
@@ -31,11 +31,9 @@ This takes a Python list of German texts as input and predicts first letter spel
 Word2Vec_word_predictor.predict.batch_test(test_list, model_filename, export_df="")
 ``
 
-  test_list.........list, a list of German texts/sentences
-  
-  model_filename....string, takes a pretrained Gensim Word2Vec Embedding file, will be loaded with Gensim
-  
-  export_df.........optional, string, takes the string for the name of the test evaluation output dataframe,
-                                      use export_df="no" for not exporting a test evaluation dataframe, 
-                                      exports as pickle file and includes metrics like Sensitivity, Specificity, 
-                                      Accuracy, MCC, etc. Final file name will be "df_evaluation_" + export_df.pkl
+- test_list.........list, a list of German texts/sentences
+- model_filename....string, takes a pretrained Gensim Word2Vec Embedding file, will be loaded with Gensim
+- export_df.........optional, string, takes the string for the name of the test evaluation output dataframe,
+                    use export_df="no" for not exporting a test evaluation dataframe, 
+                    exports as pickle file and includes metrics like Sensitivity, Specificity, 
+                    Accuracy, MCC, etc. Final file name will be "df_evaluation_" + export_df.pkl
